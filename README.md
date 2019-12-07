@@ -1,48 +1,36 @@
-# DS5220-NaiveBayes
-Spring '19 DS5220 Group Project
+# Exploring Naive Bayes Under Adverse Conditions
+### Spring '19 DS5220 Group Project
+### Authors: Andrew Reichel, Smruthi Ramesh, Ross Marino, Adam Ribaudo
 
-Project Proposal - Naive People Figuring out Naive Bayes
-Authors: ...
+## Project Description
 
-Description of Problems
-Summary:
-How robust is Naive Bayes to data quality issues that we see in real life?
-Individual Problems
-How independent do the features actually need to be to produce decent results?
-Domain: Real Estate
-How does Naive Bayes perform at varying combinations of number of predictors compared to number of observations?
-Domain: Biomedical (high number of predictors)
-As part of this, measure computational performance as compared to other methods
-How does naive Bayes perform when presuming varying distributions and applying it to data generated using varying distributions? Use histogram of data vs. Normal? 
-Domain: Manufacturing defects (non-normal distribution of defects)
-How robust is Naive Bayes to missing data?
-Domain: Survey data
-How robust is Naive Bayes to class imbalance?
-Domain: Web conversions
-Final Problem: Performance under worst case scenario for the above problems: missing data, class imbalance, wrong distribution, collinear data
-Summary of Data
-We’ll produce simulated data that demonstrates each of the problems described above. 
-Missing values
-High number of predictors and low number of observations
-Underlying Models
-Low to high polynomial functions
-Interactions
-Distributions of predictors
-Varying degrees of Multicollinearity
-Combination of continuous and categorical predictors 
-Methods
-Simulate data sets for each question
-EG For collinearity we will create multiple data sets that have a range of collinearity between the predictors being generated
-For each question we will have a data sets with a range of faultiness which corresponds to the question
-Vary the amount of covariance between predictors
-Baseline-- QDA or Logistic regression
-Zero Rule - Majority class (generally better than random classifier)
-Random classifier 
-Cross Validation of models
-Preliminary Results
-Generate some simulated data, run it once
+The Naive Bayes classification method is a generative model known to perform well even when its underlying assumption of conditional independence between predictors given a particular class is broken. That being the case, conditions exist where the underlying data breaks this assumption to such an extent that class assignments change and predictions are no longer useful. This project explores these and other thresholds that outline when Naive Bayes performs worse than other models that make fewer or different assumptions about the data. 
+
+The following adverse data conditions were explored as part of this project:
+* Dependence between variables (breaking the assumption of conditional independence)
+* High number of predictors and low number of observations (as found in biomedical data)
+* Non-gaussian distributions (as found in manufacturing data) 
+* Missing values (as found in survey data)
+* High class imbalance (as found in text classification data)
+* Combinations of the above conditions
+
+## Summary of Findings
+
+This project was inspired by the frequent reference to Naive Bayes’ “surprising” abilities. Our analysis attempted to unpack what makes Naive Bayes’ predictive capabilities so surprising. What we learned is that there are several features that make Naive Bayes robust to certain data quality issues. For instance, its presumption of conditional independence between predictors means that useful predictions can be made even when specific combinations of predictor values are not present in the data. When the data is corrected for class imbalance, Naive Bayes also has surprisingly good recall compared to discriminative classifiers.
+
+That being said, it also became clear that Naive Bayes had certain limitations that in many cases made other models more preferred. Data with a high degree of predictor dependence proved to be especially problematic. While our section on Dependence Between Variables showed that dependence is not always problematic, a researcher would not be able to determine this without having access to the true underlying model generating the data.
+
+In addition, Naive Bayes uses the distribution of predictors to make predictions, so as we imputed missing values or oversampled for classes with a low number of observations, we artificially lowered the variance of the predictors. This gave us a tighter decision boundary which would not generalize well to new data.
+
+Ultimately, we judge that Naive Bayes is a simple, efficient model that provides useful predictions in many cases despite underlying data quality issues. For these reasons, our recommendation would be to use it as a starting baseline before evaluating more complicated models.
 	
-References
-Git hub url: https://github.com/areichel90/DS5220-NaiveBayes.git
+## References
+
+- Zhang, Harry. (2004). The Optimality of Naive Bayes. Proceedings of the Seventeenth International Florida Artificial Intelligence Research Society Conference, FLAIRS 2004. 2. 
+
+- Rennie et al. (2003). Tackling the Poor Assumptions of Naive Bayes Text Classifiers. Proceedings of the Twentieth International Conference on Machine Learning (ICML-2003), Washington DC, 2003.
+
+- Kotzias et. al,. (2015) From Group to Individual Labels using Deep Features. KDD ‘15. Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.
+
 
 
